@@ -1,5 +1,6 @@
 [深入研究-webkit-overflow-scrolling:touch及ios滚动](https://www.cnblogs.com/xiahj/p/8036419.html)
 
+```
 <div id='confirm_order'>
   <Header title="确认订单"/>
   <div className="content">
@@ -44,3 +45,4 @@
       padding-bottom: env(safe-area-inset-bottom); /* 兼容 iOS >= 11.2 */
     }
 }
+```
