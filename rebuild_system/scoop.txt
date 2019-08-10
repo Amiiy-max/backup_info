@@ -4,3 +4,5 @@ iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
 
 [environment]::setEnvironmentVariable('SCOOP_GLOBAL','C:\Scoop\apps','Machine')
 $env:SCOOP_GLOBAL='C:\Scoop\apps'
+
+scoop install 7zip aria2 git nodejs notepadplusplus shadowsocks openssh postman apache cacher curl everything innounp 
