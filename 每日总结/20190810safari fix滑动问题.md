@@ -29,7 +29,7 @@
     height: 100%;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
-    .content_forbid_fix_scroll {
+    **.content_forbid_fix_scroll** {
       min-height: 100.1%;
     }
   }
