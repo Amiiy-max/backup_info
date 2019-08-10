@@ -1,6 +1,0 @@
-[environment]::setEnvironmentVariable('SCOOP','C:\Scoop','User')
-$env:SCOOP='C:\Scoop'
-iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
-
-[environment]::setEnvironmentVariable('SCOOP_GLOBAL','C:\Scoop\apps','Machine')
-$env:SCOOP_GLOBAL='C:\Scoop\apps'
