@@ -20,6 +20,8 @@ ln -s /app/software/node-v12.9.1/bin/node /usr/local/bin/
 echo "export NODE_HOME=/app/software/node-v12.9.1"  >> /etc/profile
 echo -e "export PATH=\$NODE_HOME/bin:\$PATH"  >> /etc/profile
 source /etc/profile
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+cnpm install -g live-server
 
 ##nginx
 yum -y install make zlib zlib-devel gcc gcc-c++ libtool  openssl openssl-devel
