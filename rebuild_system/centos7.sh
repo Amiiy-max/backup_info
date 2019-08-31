@@ -26,16 +26,10 @@ cnpm install -g live-server
 ##nginx
 yum -y install make zlib zlib-devel gcc gcc-c++ libtool  openssl openssl-devel
 cd /download
-wget https://ftp.pcre.org/pub/pcre/pcre2-10.33.tar.gz
-tar zxvf pcre2-10.33.tar.gz -C /app/software/
-cd /app/software/pcre2-10.33
-./configure
-make && make install
-cd /download
 wget http://nginx.org/download/nginx-1.16.1.tar.gz
 tar zxvf nginx-1.16.1.tar.gz -C /app/
 cd /app/nginx-1.16.1
-./configure --with-http_ssl_module --with-pcre=/app/software/pcre2-10.33
+./configure --with-http_ssl_module --with-pcre
 make
 make install
 /usr/local/nginx/sbin/nginx -v
