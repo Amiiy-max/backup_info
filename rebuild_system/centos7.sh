@@ -17,7 +17,7 @@ cd /app/software/
 mv node-v12.9.1-linux-x64 node-v12.9.1
 ln -s /app/software/node-v12.9.1/bin/npm /usr/local/bin/
 ln -s /app/software/node-v12.9.1/bin/node /usr/local/bin/
-echo "export NODE_HOME=/app/software/node-v10.16.3"  >> /etc/profile
+echo "export NODE_HOME=/app/software/node-v12.9.1"  >> /etc/profile
 echo -e "export PATH=\$NODE_HOME/bin:\$PATH"  >> /etc/profile
 source /etc/profile
 
