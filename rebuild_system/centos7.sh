@@ -8,19 +8,8 @@ mkdir /app
 mkdir /app/software
 mkdir /download
 
-##zsh
-yum -y update && yum -y install zsh git
-chsh -s $(which zsh)
-cd /download
-git clone https://github.com/powerline/fonts.git --depth=1
-cd /download/fonts
-./install.sh
-cd /
-rm -rf /download/fonts
-echo "y" >> sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-
 ##node
-yum -y install gcc gcc-c++ kernel-devel
+yum -y install gcc gcc-c++ kernel-devel git
 cd /download
 wget https://npm.taobao.org/mirrors/node/v10.16.3/node-v10.16.3.tar.gz
 ##wget https://nodejs.org/dist/v10.16.3/node-v10.16.3.tar.gz
@@ -50,3 +39,14 @@ cd /app/nginx-1.16.1
 make
 make install
 /usr/local/nginx/sbin/nginx -v
+
+##zsh
+yum -y update && yum -y install zsh 
+chsh -s $(which zsh)
+cd /download
+git clone https://github.com/powerline/fonts.git --depth=1
+cd /download/fonts
+./install.sh
+cd /
+rm -rf /download/fonts
+sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
