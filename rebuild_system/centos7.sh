@@ -14,7 +14,7 @@ cd /download
 wget https://npm.taobao.org/mirrors/node/v10.16.3/node-v10.16.3.tar.gz
 ##wget https://nodejs.org/dist/v10.16.3/node-v10.16.3.tar.gz
 ##wget https://npm.taobao.org/mirrors/node/v12.9.1/node-v12.9.1.tar.gz
-tar zxvf node-v10.16.3 -C /app/software/
+tar zxvf node-v10.16.3.tar.gz -C /app/software/
 cd /app/software/node-v10.16.3
 ./configure
 make
