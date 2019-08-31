@@ -30,6 +30,7 @@ make
 make install
 echo "export NODE_HOME=/app/software/node-v12.9.1"  >> /etc/profile
 echo "export PATH=$NODE_HOME/bin:$PATH"  >> /etc/profile
+source /etc/profile
 
 ##nginx
 yum -y install make zlib zlib-devel gcc gcc-c++ libtool  openssl openssl-devel
