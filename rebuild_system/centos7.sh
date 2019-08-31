@@ -20,7 +20,7 @@ cd /app/software/node-v10.16.3
 make
 make install
 echo "export NODE_HOME=/app/software/node-v10.16.3"  >> /etc/profile
-echo "export PATH=$NODE_HOME/bin:$PATH"  >> /etc/profile
+echo -e "export PATH=$NODE_HOME/bin:$PATH"  >> /etc/profile
 source /etc/profile
 
 ##nginx
