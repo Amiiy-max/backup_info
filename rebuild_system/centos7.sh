@@ -17,7 +17,7 @@ cd /download/fonts
 ./install.sh
 cd /
 rm -rf /download/fonts
-sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+echo "y" >> sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 
 ##node
 yum -y install gcc gcc-c++ kernel-devel
