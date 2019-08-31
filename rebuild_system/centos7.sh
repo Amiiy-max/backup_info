@@ -11,14 +11,12 @@ mkdir /download
 ##node
 yum -y install gcc gcc-c++ kernel-devel git
 cd /download
-wget https://npm.taobao.org/mirrors/node/v10.16.3/node-v10.16.3.tar.gz
-##wget https://nodejs.org/dist/v10.16.3/node-v10.16.3.tar.gz
-##wget https://npm.taobao.org/mirrors/node/v12.9.1/node-v12.9.1.tar.gz
-tar zxvf node-v10.16.3.tar.gz -C /app/software/
-cd /app/software/node-v10.16.3
-./configure
-make
-make install
+wget https://npm.taobao.org/mirrors/node/v12.9.1/node-v12.9.1-linux-x64.tar.xz
+tar -xvf node-v12.9.1-linux-x64.tar.xz -C /app/software
+cd /app/software/
+mv node-v12.9.1-linux-x64 node-v12.9.1
+ln -s /app/software/node-v12.9.1/bin/npm /usr/local/bin/
+ln -s /app/software/node-v12.9.1/bin/node /usr/local/bin/
 echo "export NODE_HOME=/app/software/node-v10.16.3"  >> /etc/profile
 echo -e "export PATH=\$NODE_HOME/bin:\$PATH"  >> /etc/profile
 source /etc/profile
