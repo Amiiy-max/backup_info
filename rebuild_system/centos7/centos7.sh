@@ -1,6 +1,6 @@
 ##[zsh oh-my-zsh](https://www.jianshu.com/p/27c8088dc8f7)   
-##agnoster [solarized](https://ethanschoonover.com/solarized/) powerline font   
-##nodejs   
+##[在Linux系统安装Nodejs 最简单步骤](https://www.cnblogs.com/Logan626/p/11191894.html)
+##agnoster [solarized](https://ethanschoonover.com/solarized/) powerline font     
 ##[nginx](http://nginx.org/en/docs/beginners_guide.html)   
 
 
