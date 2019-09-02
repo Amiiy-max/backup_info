@@ -33,6 +33,8 @@ cd /app/nginx-1.16.1
 make
 make install
 /usr/local/nginx/sbin/nginx -v
+cd /usr/local/nginx/conf
+wget https://raw.githubusercontent.com/gugegev5/backup_info/master/rebuild_system/centos7/nginx.conf
 
 ##zsh
 yum -y update && yum -y install zsh 
