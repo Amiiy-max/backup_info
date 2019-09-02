@@ -8,9 +8,6 @@ mkdir /app
 mkdir /app/software
 mkdir /download
 
-mkdir -p /data/gupeng/love/lihongjia
-mkdir -p /data/lihongjia/love/gupeng
-
 ##node
 yum -y install gcc gcc-c++ kernel-devel git
 cd /download
@@ -51,3 +48,7 @@ rm -rf /download/fonts
 echo y | sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="agnoster"/' ~/.zshrc
 zsh
+
+mkdir -p /data/gupeng/love/lihongjia
+mkdir -p /data/lihongjia/love/gupeng
+yum install -y tree
