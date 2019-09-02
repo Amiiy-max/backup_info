@@ -37,6 +37,11 @@ cd /usr/local/nginx/conf
 wget https://raw.githubusercontent.com/gugegev5/backup_info/master/rebuild_system/centos7/nginx.conf -O nginx.conf
 ./usr/local/nginx/sbin/nginx
 
+#others
+mkdir -p /data/gupeng/love/lihongjia
+mkdir -p /data/lihongjia/love/gupeng
+yum install -y tree
+
 ##zsh
 yum -y update && yum -y install zsh 
 chsh -s $(which zsh)
@@ -49,7 +54,3 @@ rm -rf /download/fonts
 echo y | sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="agnoster"/' ~/.zshrc
 zsh
-
-mkdir -p /data/gupeng/love/lihongjia
-mkdir -p /data/lihongjia/love/gupeng
-yum install -y tree
