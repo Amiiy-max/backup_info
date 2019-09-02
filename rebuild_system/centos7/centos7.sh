@@ -8,6 +8,9 @@ mkdir /app
 mkdir /app/software
 mkdir /download
 
+mkdir -p /data/gupeng/love/lihongjia
+mkdir -p /data/lihongjia/love/gupeng
+
 ##node
 yum -y install gcc gcc-c++ kernel-devel git
 cd /download
