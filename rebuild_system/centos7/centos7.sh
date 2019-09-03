@@ -36,12 +36,12 @@ cd /usr/local/nginx/conf
 wget https://raw.githubusercontent.com/gugegev5/backup_info/master/rebuild_system/centos7/nginx.conf -O nginx.conf
 /usr/local/nginx/sbin/nginx
 
-#others
+#extras
 mkdir -p /data/gupeng/love/lihongjia
 mkdir -p /data/lihongjia/love/gupeng
 yum install -y tree
 
-##zsh
+##last: zsh
 yum -y update && yum -y install zsh 
 chsh -s $(which zsh)
 cd /download
