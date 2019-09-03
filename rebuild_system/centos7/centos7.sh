@@ -32,10 +32,9 @@ cd /app/nginx-1.16.1
 ./configure --with-http_ssl_module --with-pcre
 make
 make install
-/usr/local/nginx/sbin/nginx -v
 cd /usr/local/nginx/conf
 wget https://raw.githubusercontent.com/gugegev5/backup_info/master/rebuild_system/centos7/nginx.conf -O nginx.conf
-./usr/local/nginx/sbin/nginx
+/usr/local/nginx/sbin/nginx
 
 #others
 mkdir -p /data/gupeng/love/lihongjia
