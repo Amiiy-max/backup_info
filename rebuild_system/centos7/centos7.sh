@@ -29,7 +29,7 @@ cd /download
 wget http://nginx.org/download/nginx-1.16.1.tar.gz
 tar zxvf nginx-1.16.1.tar.gz -C /app/
 cd /app/nginx-1.16.1
-./configure --with-http_ssl_module --with-pcre
+./configure --with-http_ssl_module --with-pcre --with-http_v2_module --with-http_realip_module
 make
 make install
 cd /usr/local/nginx/conf
