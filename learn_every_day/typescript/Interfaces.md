@@ -23,7 +23,7 @@ interface SquareConfig {
 
 #### Readonly properties
 only be modifiable when an object is first created
-```
+```typescript
 interface Point {
     readonly x: number;
     readonly y: number;
@@ -33,7 +33,7 @@ let p1: Point = { x: 10, y: 20 };
 p1.x = 5; // error!
 ```
 ReadonlyArray<T> (all mutating methods removed)
-```
+```typescript
 let a: number[] = [1, 2, 3, 4];
 let ro: ReadonlyArray<number> = a;
 ro[0] = 12; // error!
@@ -49,17 +49,17 @@ a = ro as number[];
 #### Excess Property Checks (出现原因:可以比接口多字段，?可以比接口少字段；两个一起用可能出bug)
 ***Object literals*** get special treatment and undergo *excess property checking* when assigning them to other variables, or passing them as arguments.   
 (不能比接口定义的多)If an object literal has any properties that the “target type” doesn’t have, you’ll get an error
-```
+```typescript
 // error: Object literal may only specify known properties, but 'colour' does not exist in type 'SquareConfig'. Did you mean to write 'color'?
 let mySquare = createSquare({ colour: "red", width: 100 });
 ```
 Getting around 1 : type assertion   
-```
+```typescript
 let mySquare = createSquare({ width: 100, opacity: 0.5 } as SquareConfig);
 ```   
 
 Getting around 2 : a better approach might be to add a ***string index signature***字符串索引签名
-```
+```typescript
 interface SquareConfig {
     color?: string;
     width?: number;
@@ -67,14 +67,14 @@ interface SquareConfig {
 }
 ```
 Getting around 3 : assign the object to another variable
-```
+```typescript
 let squareOptions = { colour: "red", width: 100 };// squareOptions won’t undergo excess property checks
 let mySquare = createSquare(squareOptions);
 ```
 
 #### Function Types 
 ***call signature*** (function declaration with only the parameter list and return type given)
-```
+```typescript
 interface SearchFunc {
     (source: string, subString: string): boolean;
 }
@@ -87,12 +87,11 @@ mySearch2 = function(src, sub) {
     let result = src.search(sub);
     return result > -1;
 }
-Ind
 ```
 
 #### Indexable Types (describe types that we can “index into” like a[10], or ageMap["daniel"])
 ***index signature***: describes the types we can use to index into the object, along with the corresponding return types when indexing
-```
+```typescript
 interface StringArray {
     [index: number]: string;
 }
@@ -104,7 +103,7 @@ let myStr: string = myArray[0];
 ```
 ***supported index signatures***: string and number.(同时使用两种类型的索引，但是数字索引的返回值必须是字符串索引返回值类型的子类型。)
 tips: 子类型的原因是 JS会把number索引转化为string索引
-```
+```typescript
 class Animal {
     name: string;
 }
@@ -128,7 +127,7 @@ interface ReadonlyStringArray {
 ```
 
 #### Class Types
-```
+```typescript
 interface ClockInterface {
     currentTime: Date;
     setTime(d: Date): void;
@@ -146,7 +145,7 @@ Interfaces describe the public side of the class, rather than both the public an
 
 ***Difference between the static and instance sides of classes***   
 **class**(类，不是对象) has two types: the type of the *static side* and the type of the *instance side*.   
-```
+```typescript
 interface ClockConstructor {
     new (hour: number, minute: number);//constructor sits in the static side, it is not included in this check.
 }
@@ -155,11 +154,11 @@ class Clock implements ClockConstructor {
     currentTime: Date;
     constructor(h: number, m: number) { }
 }
-Error:(5, 7) TS2420: Class 'Clock' incorrectly implements interface 'ClockConstructor'.
-  Type 'Clock' provides no match for the signature 'new (hour: number, minute: number): ClockInterface'.
+//Error:(5, 7) TS2420: Class 'Clock' incorrectly implements interface 'ClockConstructor'.
+//  Type 'Clock' provides no match for the signature 'new (hour: number, minute: number): ClockInterface'.
 ```   
-need to work with the static side of the class directly.
-```
+need to work with the static side of the class directly.需要定义两个接口
+```typescript
 interface ClockConstructor {    // for the constructor
     new  (hour: number, minute: number): ClockInterface;
 }
@@ -175,12 +174,78 @@ class DigitalClock implements ClockInterface {
         console.log("beep beep");
     }
 }
-class AnalogClock implements ClockInterface {
+//方式1. 用函数的参数 to type check constructor
+let digital = createClock(DigitalClock, 12, 17);    //first parameter type ClockConstructor: it checks that DigitalClock has the correct constructor signature
+//方式2. use class expressions to type check constructor
+const AnalogClock: ClockConstructor = class AnalogClock implements ClockInterface {
     constructor(h: number, m: number) { }
     tick() {
         console.log("tick tock");
     }
 }
-let digital = createClock(DigitalClock, 12, 17);    //first parameter type ClockConstructor: it checks that DigitalClock has the correct constructor signature
-let analog = createClock(AnalogClock, 7, 32);       //first parameter type ClockConstructor: it checks that AnalogClock has the correct constructor signature.
+let analog = new AnalogClock(7, 32);      
+```
+
+#### Extending Interfaces
+```typescript
+interface Shape {
+    color: string;
+}
+interface PenStroke {
+    penWidth: number;
+}
+interface Square extends Shape, PenStroke {
+    sideLength: number;
+}
+```
+
+#### Hybrid Types
+interfaces can describe the ***rich types*** present in real world JavaScript   
+JavaScript’s ***dynamic and flexible nature*** ==> combination of some types   
+
+***an object that acts as both a function and an object, with additional properties:***
+```typescript
+interface Counter {
+    (start: number): string;
+    interval: number;
+    reset(): void;
+}
+function getCounter(): Counter {
+    let counter = (function (start: number) { }) as Counter;
+    counter.interval = 123;
+    counter.reset = function () { };
+    return counter;
+}
+let c = getCounter();
+c(10);
+c.reset();
+c.interval = 5.0;
+```
+
+#### Interfaces Extending Classes ???
+inherits the members of the class but not their implementations, even the ***private and protected members*** of a base class.   
+===> 接口只能由class或subclass实现
+
+This is useful when you have a large inheritance hierarchy, but want to specify that your code works with only subclasses that have certain properties. The subclasses don’t have to be related besides inheriting from the base class
+```typescript
+class Control {
+    private state: any; //private ==> only *descendants* of Control 可以实现SelectableControl
+}
+interface SelectableControl extends Control {
+    select(): void;
+}
+
+//only descendants of Control will have a state private member that *originates* in the same declaration, which is a requirement for private members to be compatible.
+class Button extends Control implements SelectableControl {
+    select() { }
+}
+class TextBox extends Control {
+    select() { }
+}
+
+//TS2420: Class 'Image' incorrectly implements interface 'SelectableControl'.   Types have separate declarations of a private property 'state'.
+class Image implements SelectableControl {
+    private state: any;
+    select() { }
+}
 ```
