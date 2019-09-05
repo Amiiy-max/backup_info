@@ -1,0 +1,186 @@
+>question:  索引签名的名字有什么用？如propName
+>```
+>interface SquareConfig {
+>    color?: string;
+>    width?: number;
+>    [propName: string]: any;
+>}
+>```
+
+
+core principle: type checking focuses on the shape that values have   
+**duck typing** or **structural subtyping**   
+it’s only the shape that matters, no order limit
+
+#### Optional Properties 
+creating patterns like “option bags”
+```typescript
+interface SquareConfig {
+    color?: string;
+    width?: number;
+}
+```
+
+#### Readonly properties
+only be modifiable when an object is first created
+```
+interface Point {
+    readonly x: number;
+    readonly y: number;
+}
+//construct a Point by assigning an object literal
+let p1: Point = { x: 10, y: 20 };
+p1.x = 5; // error!
+```
+ReadonlyArray<T> (all mutating methods removed)
+```
+let a: number[] = [1, 2, 3, 4];
+let ro: ReadonlyArray<number> = a;
+ro[0] = 12; // error!
+ro.push(5); // error!
+ro.length = 100; // error!
+a = ro; // error!
+//type assertion(assign back to a normal array)类型断言
+a = ro as number[];
+```
+***Variables use const whereas properties use readonly***
+
+
+#### Excess Property Checks (出现原因:可以比接口多字段，?可以比接口少字段；两个一起用可能出bug)
+***Object literals*** get special treatment and undergo *excess property checking* when assigning them to other variables, or passing them as arguments.   
+(不能比接口定义的多)If an object literal has any properties that the “target type” doesn’t have, you’ll get an error
+```
+// error: Object literal may only specify known properties, but 'colour' does not exist in type 'SquareConfig'. Did you mean to write 'color'?
+let mySquare = createSquare({ colour: "red", width: 100 });
+```
+Getting around 1 : type assertion   
+```
+let mySquare = createSquare({ width: 100, opacity: 0.5 } as SquareConfig);
+```   
+
+Getting around 2 : a better approach might be to add a ***string index signature***字符串索引签名
+```
+interface SquareConfig {
+    color?: string;
+    width?: number;
+    [propName: string]: any; // any number of other properties
+}
+```
+Getting around 3 : assign the object to another variable
+```
+let squareOptions = { colour: "red", width: 100 };// squareOptions won’t undergo excess property checks
+let mySquare = createSquare(squareOptions);
+```
+
+#### Function Types 
+***call signature*** (function declaration with only the parameter list and return type given)
+```
+interface SearchFunc {
+    (source: string, subString: string): boolean;
+}
+let mySearch: SearchFunc;
+mySearch = function(src: string, sub: string): boolean {// the names of the parameters do not need to match
+    let result = src.search(sub);
+    return result > -1;
+}
+mySearch2 = function(src, sub) {
+    let result = src.search(sub);
+    return result > -1;
+}
+Ind
+```
+
+#### Indexable Types (describe types that we can “index into” like a[10], or ageMap["daniel"])
+***index signature***: describes the types we can use to index into the object, along with the corresponding return types when indexing
+```
+interface StringArray {
+    [index: number]: string;
+}
+
+let myArray: StringArray;
+myArray = ["Bob", "Fred"];
+
+let myStr: string = myArray[0];
+```
+***supported index signatures***: string and number.(同时使用两种类型的索引，但是数字索引的返回值必须是字符串索引返回值类型的子类型。)
+tips: 子类型的原因是 JS会把number索引转化为string索引
+```
+class Animal {
+    name: string;
+}
+class Dog extends Animal {
+    breed: string;
+}
+// 错误：使用数值型的字符串索引，有时会得到完全不同的Animal!
+interface NotOkay {
+    [x: number]: Animal;
+    [x: string]: Dog;
+}
+
+interface NumberDictionary {
+    [index: string]: number;
+    length: number;    // ok, length is a number
+    name: string;      // error, the type of 'name' is not a subtype of the indexer
+}
+interface ReadonlyStringArray {
+    readonly [index: number]: string;
+}
+```
+
+#### Class Types
+```
+interface ClockInterface {
+    currentTime: Date;
+    setTime(d: Date): void;
+}
+
+class Clock implements ClockInterface {
+    currentTime: Date = new Date();
+    setTime(d: Date) {
+        this.currentTime = d;
+    }
+    constructor(h: number, m: number) { }
+}
+```
+Interfaces describe the public side of the class, rather than both the public and private side. This prohibits you from using them to check that a class also has particular types for the private side of the class instance.   
+
+***Difference between the static and instance sides of classes***   
+**class**(类，不是对象) has two types: the type of the *static side* and the type of the *instance side*.   
+```
+interface ClockConstructor {
+    new (hour: number, minute: number);//constructor sits in the static side, it is not included in this check.
+}
+
+class Clock implements ClockConstructor {
+    currentTime: Date;
+    constructor(h: number, m: number) { }
+}
+Error:(5, 7) TS2420: Class 'Clock' incorrectly implements interface 'ClockConstructor'.
+  Type 'Clock' provides no match for the signature 'new (hour: number, minute: number): ClockInterface'.
+```   
+need to work with the static side of the class directly.
+```
+interface ClockConstructor {    // for the constructor
+    new  (hour: number, minute: number): ClockInterface;
+}
+interface ClockInterface {      // for the instance methods
+    tick (): void;
+}
+function createClock(ctor: ClockConstructor, hour: number, minute: number): ClockInterface {
+    return new ctor(hour, minute);
+}
+class DigitalClock implements ClockInterface {
+    constructor(h: number, m: number) { }
+    tick() {
+        console.log("beep beep");
+    }
+}
+class AnalogClock implements ClockInterface {
+    constructor(h: number, m: number) { }
+    tick() {
+        console.log("tick tock");
+    }
+}
+let digital = createClock(DigitalClock, 12, 17);    //first parameter type ClockConstructor: it checks that DigitalClock has the correct constructor signature
+let analog = createClock(AnalogClock, 7, 32);       //first parameter type ClockConstructor: it checks that AnalogClock has the correct constructor signature.
+```
