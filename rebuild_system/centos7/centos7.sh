@@ -7,6 +7,7 @@
 mkdir /app
 mkdir /app/software
 mkdir /download
+mkdir /ssl
 
 ##node
 yum -y install gcc gcc-c++ kernel-devel git
