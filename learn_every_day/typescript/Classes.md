@@ -1,3 +1,5 @@
+>??? The constructor function also contains all of the static members of the class ???
+
 Traditional JavaScript uses functions and prototype-based inheritance to build up reusable components   
 object-oriented approach: classes inherit functionality and objects are built from these classes   
 
