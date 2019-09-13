@@ -75,3 +75,21 @@ http {
         }
     }
 }
+```
+反向代理静态网站(存在缓存问题)
+```
+server {
+	listen          80;
+	server_name     www.gupengblog.cn;
+
+	location = / {
+	  proxy_pass   http://front.qiniu.gupengblog.cn/model-viewer/index.html;
+	}
+
+	location / {
+	   proxy_pass  http://front.qiniu.gupengblog.cn/model-viewer/;
+	}
+}
+```
+    
+
