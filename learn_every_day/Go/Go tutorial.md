@@ -65,3 +65,32 @@ func main() {
 }
 
 ```
+
+#### array ([n]T) slices ([]T)
+```
+func main() {
+	var a [2]string
+	a[0] = "Hello"
+	fmt.Println(a)
+	primes := [6]int{2, 3, 5, 7, 11, 13}
+	fmt.Println(primes)
+	//An array's length is part of its type, so arrays cannot be resized.
+	
+	var s []int = primes[1:4]	//half-open range 左包含 右不包含
+					//p[:3] ==> 0-2, p[4:] ==> 4-end
+	fmt.Println(s)
+	//slice: dynamically-sized, flexible view into the elements of an *array*
+	
+	//default slice:
+	//var a [10]int ==> a[0:10] a[:10] a[0:] a[:]
+}	
+```
+Slices are like references to arrays(A slice does not store any data, it just describes a section of an underlying array.)
+```
+func main() {
+	q := [3]bool{true, true, false}	//array literal
+	r := []bool{true, true, false}	//Slice literal: 创建一个数组,然后references这个数组
+	fmt.Println(q,r)
+}
+```
+https://tour.golang.org/moretypes/10
