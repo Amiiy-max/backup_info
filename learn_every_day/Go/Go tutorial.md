@@ -45,8 +45,23 @@ fmt.Println(*p) // 通过指针 p 读取 i
 
 #### struct (a collection of fields.)
 ```
-type Vertex struct {（而 type 的含义跟其字面意思相符。）
+type Vertex struct {		//(type的含义跟其字面意思相符)
 	X int
 	Y int
 }
+var (				//*Struct Literals*
+	v1 = Vertex{1, 2}  	// has type Vertex
+	v2 = Vertex{X: 1}  	// Y:0 is implicit
+	v3 = Vertex{}      	// X:0 and Y:0
+	p1  = &Vertex{1, 2} 	// has type *Vertex
+)
+func main() {
+	v := Vertex{1, 2}
+	v.X = 4			//(结构体字段使用点号来访问)
+	p := &v
+	p.X = 1e9		//(结构体字段可以通过结构体指针来访问。)
+				//(*p).X ==> notation is cumbersome ==> p.X
+	fmt.Println(v.X, v)
+}
+
 ```
