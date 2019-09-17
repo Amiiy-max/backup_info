@@ -23,6 +23,7 @@ echo -e "export PATH=\$NODE_HOME/bin:\$PATH"  >> /etc/profile
 source /etc/profile
 npm install -g cnpm --registry=https://registry.npm.taobao.org
 cnpm install -g live-server
+#sudo ln -s /app/software/node-v12.9.1/bin/cnpm /usr/bin/cnpm #sudo: cnpm: command not found
 
 ##nginx
 yum -y install make zlib zlib-devel gcc gcc-c++ libtool  openssl openssl-devel
