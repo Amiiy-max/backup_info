@@ -1,5 +1,5 @@
 ### Flow Control
-#### 牛顿法实现开方函数
+牛顿法实现开方函数
 ```Go
 package main
 import "fmt"
