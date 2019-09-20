@@ -1,0 +1,7 @@
+# C:\Windows\System32\drivers\etc\hosts
+151.101.77.194 github.global.ssl.fastly.net
+185.199.111.153 assets-cdn.github.com
+151.101.76.133  avatars0.githubusercontent.com
+# Ping 151.101.77.194 平均 = 129ms
+# ping 185.199.111.153 平均 = 71ms
+# ping 151.101.77.194 平均 = 129ms
