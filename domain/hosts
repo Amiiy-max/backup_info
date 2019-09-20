@@ -5,3 +5,7 @@
 # Ping 151.101.77.194 平均 = 129ms
 # ping 185.199.111.153 平均 = 71ms
 # ping 151.101.77.194 平均 = 129ms
+
+0.0.0.0 account.jetbrains.com
+0.0.0.0 www.jetbrains.com
+192.168.88.177 windows10.microdone.cn
