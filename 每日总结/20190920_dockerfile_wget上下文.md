@@ -14,39 +14,22 @@ ls -lh sh # sh -> /bin/busybox
 ### 善用Dockerfile缓存
 不易变的部分放前边，可以使用缓存的layer
 ```
-Step 1/9 : FROM alpine:edge
+Step 1/5 : FROM alpine:edge
  ---> 70997d35b3ed
-Step 2/9 : MAINTAINER gup <1725763838@qq.com>
- ---> Using cache                                     # *Using cache*
+Step 2/5 : MAINTAINER gup <1725763838@qq.com>
+ ---> Using cache
  ---> 1cf6f1a6e19a
-Step 3/9 : RUN apk update && apk upgrade && apk add --update bash jq
- ---> Using cache                                     # *Using cache*
- ---> f65a8033db31
-Step 4/9 : COPY ./assets/* /opt/resource/
- ---> cdd4735df143
-Step 5/9 : RUN wget -c http://gosspublic.alicdn.com/ossutil/1.6.7/ossutil32 && mv ossutil32 /opt/resource
- ---> Running in 99ec8b3011b5
-Connecting to gosspublic.alicdn.com (101.37.183.186:80)
-saving to 'ossutil32'
-ossutil32              8% |**                              |  717k  0:00:11 ETA
-ossutil32            100% |********************************| 8625k  0:00:00 ETA
-'ossutil32' saved
-Removing intermediate container 99ec8b3011b5
- ---> ac8f50777aad
-Step 6/9 : RUN chmod 777 /opt/resource/ossutil32
- ---> Running in 51529cd6a9aa
-Removing intermediate container 51529cd6a9aa
- ---> a45a50888e14
-Step 7/9 : RUN chmod 777 /opt/resource/in
- ---> Running in 826cf09d91ec
-Removing intermediate container 826cf09d91ec
- ---> f3f055a53d1d
-Step 8/9 : RUN chmod 777 /opt/resource/out
- ---> Running in b333eb6d39a9
-Removing intermediate container b333eb6d39a9
- ---> 8c159bc4e555
-Step 9/9 : RUN chmod 777 /opt/resource/check
- ---> Running in e7089c5c0f62
+Step 3/5 : RUN apk update &&         apk upgrade &&         apk add --update bash jq &&     wget -c http://gosspublic.alicdn.com/ossutil/1.6.7/ossutil32 &&       
+ ---> Using cache
+ ---> 95310bfbda81
+Step 4/5 : COPY ./assets/* /opt/resource/
+ ---> 00261ef5c958
+Step 5/5 : RUN chmod 777 -R /opt/resource
+ ---> Running in da554c1943bb
+Removing intermediate container da554c1943bb
+ ---> 3de772386902
+Successfully built 3de772386902
+Successfully tagged ssl.gupengblog.cn/aliyun-oss-resource:2.6
 ```
 
 ### $PATH下目录简介 /bin, /usr/bin, /sbin, /usr/sbin
