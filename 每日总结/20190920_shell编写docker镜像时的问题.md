@@ -48,3 +48,29 @@ bin为binary的简写主要放置一些系统的必备执行档案。如：cat,c
 /usr/sbin:
 
 放置一些网路管理的必备程式例。如:dhcpd、httpd、imap、in.*d、inetd、lpd、named、netconfig、nmbd、samba、sendmail、squid、swap、tcpd、tcpdump等。
+
+### shell 遍历数组时字符串空格问题
+(将分隔符的字符串转为数组的几种方法)[https://blog.csdn.net/Jerry_1126/article/details/83930956]
+```shell
+arr=("hello world" "hello China");
+for e in ${arr[@]}; do echo $e; done;
+#hello world
+#hello China
+```
+```shell
+arrstr='"hello world" "hello China"';
+arr=($arrstr);
+for e in ${arr[@]}; do echo $e; done;
+#"hello
+#world"
+#"hello
+#China"
+```
+```shell
+IFS=,
+arrstr='hello world,hello China';
+arr=($arrstr);
+for e in ${arr[@]}; do echo $e; done;
+#hello world
+#hello China
+```
