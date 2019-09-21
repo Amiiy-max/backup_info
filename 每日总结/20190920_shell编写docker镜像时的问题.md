@@ -19,7 +19,10 @@ Step 1/5 : FROM alpine:edge
 Step 2/5 : MAINTAINER gup <1725763838@qq.com>
  ---> Using cache
  ---> 1cf6f1a6e19a
-Step 3/5 : RUN apk update &&         apk upgrade &&         apk add --update bash jq &&     wget -c http://gosspublic.alicdn.com/ossutil/1.6.7/ossutil32 &&       
+Step 3/5 : RUN apk update && apk upgrade && apk add --update bash jq && \
+ wget -c http://gosspublic.alicdn.com/ossutil/1.6.7/ossutil32 && \
+ mkdir -p /util_modules && mv ossutil32 /util_modules && \
+	chmod 777 /util_modules/ossutil32
  ---> Using cache
  ---> 95310bfbda81
 Step 4/5 : COPY ./assets/* /opt/resource/
@@ -31,6 +34,8 @@ Removing intermediate container da554c1943bb
 Successfully built 3de772386902
 Successfully tagged ssl.gupengblog.cn/aliyun-oss-resource:2.6
 ```
+> 修改第4步的文件重新build,push时总是有8M的layer，因为step 3 chmod 777 /opt/resource/ossutil32, step 5 chmod 777 -R /opt/resource, 第五层layer又包含了一次ossutil,
+改成另一个路径/util_modules/ossutil32就可以了
 
 ### $PATH下目录简介 /bin, /usr/bin, /sbin, /usr/sbin
 ./bin:
