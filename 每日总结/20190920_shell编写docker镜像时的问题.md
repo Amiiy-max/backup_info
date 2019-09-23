@@ -102,3 +102,22 @@ Shell本身的文件名
 $1～$n
 添加到Shell的各参数值。$1是第1参数、$2是第2参数…。
 ```
+
+### EOF
+```shell
+body="$(cat <<EOF
+{
+  "attachments": [
+      {
+          "title":      "${BUILD_TEAM_NAME}/pipelines/${BUILD_PIPELINE_NAME}/jobs/${BUILD_JOB_NAME}",
+          "title_link": "${ATC_EXTERNAL_URL}/teams/${BUILD_TEAM_NAME}/pipelines/${BUILD_PIPELINE_NAME}/jobs/${BUILD_JOB_NAME}/builds/${BUILD_NAME}"
+      }
+  ],
+  "channel":    "${channel}",
+  "text":       "${message}",
+  "avatar":     "https://concourse-ci.org/images/trademarks/concourse-black.png",
+  "alias":      "${alias}"
+}
+EOF
+)"
+```
