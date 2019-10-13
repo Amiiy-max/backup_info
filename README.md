@@ -4,3 +4,4 @@
 [rebuild centos7](rebuild_system/centos7/README.md)   
 [Markdown基本语法.md](learn_every_day/Markdown基本语法.md)  
 [click小特效](每日总结/20190926_点击特效.html)  
+[属性提升](每日总结/20190929_属性提升.md)  
