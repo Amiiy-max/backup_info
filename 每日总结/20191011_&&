@@ -1,13 +1,9 @@
 let m = {
 	num:0,
 	valueOf:() => {
-		m.num+=1;
-		return m.num%2 ? "m" : "n";
-    },
-	toString:() => {
-		m.num+=1;
-		return m.num%2 ? "m" : "n";
-    },
+		this.num+=1;
+		return this.num%2 ? "m" : "n";
+    	}
 }
 
-m.toString()==="m"&&m.toString()==="n"
+m.valueOf()==="m"&&m.valueOf()==="n"
