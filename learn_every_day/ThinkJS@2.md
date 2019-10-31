@@ -1,6 +1,7 @@
 ## qietv
 gulp watch 3000端口  ==>  proxy: 8360端口  
-node www/development.js --> new thinkjs().run()监听8360  ==>  nginx反响代理http://www.dev.qi-e.tv  
+node www/development.js --> new thinkjs().run()监听8360, thinkjs内部代理 http://www.dev.qi-e.tv  
+nginx 监听8020，反响代理http://www.dev.qi-e.tv  
 
 ## 项目结构
 1. /src (es6)    ==>    /app (es5)
