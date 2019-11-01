@@ -40,3 +40,19 @@ export default class think.base {
 3、*/yield 调用另一个 */yield 时，需要使用 yield *，带来不便。
 
 4、目前 V8 对 */yield 还没有做优化，最好也通过 Babel 来编译。
+
+### thinkjs module (每个模块有独立的配置、控制器、视图、模型等文件)
+`thinkjs module hello`
+```
+  create : src/hello/config
+  create : src/hello/config/config.js
+  create : src/hello/controller
+  create : src/hello/controller/base.js
+  create : src/hello/controller/index.js
+  create : src/hello/logic
+  create : src/hello/logic/index.js
+  create : src/hello/model
+  create : src/hello/model/index.js
+  create : view/hello
+  create : view/hello/index_index.html
+```
