@@ -90,3 +90,20 @@
     return this.sendHTML(req, res, html)
   }
 ```
+## [render-renderToHTML-findPageComponents源码地址](https://github.com/zeit/next.js/blob/be31c707a77a3dec0aff1ab19ead7beb4517feae/packages/next/next-server/server/load-components.ts#L32)
+动态加载：
+```ts
+  const [
+    buildManifest,
+    reactLoadableManifest,
+    Component,
+    Document,
+    App,
+  ] = await Promise.all([
+    require(join(distDir, BUILD_MANIFEST)),
+    require(join(distDir, REACT_LOADABLE_MANIFEST)),
+    interopDefault(ComponentMod),
+    interopDefault(DocumentMod),
+    interopDefault(require(appPath)),
+  ])
+```
