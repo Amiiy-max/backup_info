@@ -52,3 +52,41 @@
     await this.render404(req, res, parsedUrl)
   }
 ```
+
+## [render](https://github.com/gugegev5/backup_info/blob/f00d312bb1532bdcaff3419cef91c6e9bdb1969a/learn_every_day/next/%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/src/next-server/server/next-server.ts#L592)
+```ts
+  public async render(
+    req: IncomingMessage,
+    res: ServerResponse,
+    pathname: string,
+    query: ParsedUrlQuery = {},
+    parsedUrl?: UrlWithParsedQuery
+  ): Promise<void> {
+    const url: any = req.url
+
+    if (
+      url.match(/^\/_next\//) ||
+      (this.hasStaticDir && url.match(/^\/static\//))
+    ) {
+      return this.handleRequest(req, res, parsedUrl)
+    }
+
+    if (isBlockedPage(pathname)) {
+      return this.render404(req, res, parsedUrl)
+    }
+
+    const html = await this.renderToHTML(req, res, pathname, query, {
+      dataOnly:
+        (this.renderOpts.ampBindInitData && Boolean(query.dataOnly)) ||
+        (req.headers &&
+          (req.headers.accept || '').indexOf('application/amp.bind+json') !==
+            -1),
+    })
+    // Request was ended by the user
+    if (html === null) {
+      return
+    }
+
+    return this.sendHTML(req, res, html)
+  }
+```
