@@ -1,0 +1,65 @@
+```shell
+webpack-demo# npx webpack
+Hash: 96a25508427183e7944e
+Version: webpack 4.41.2
+Time: 2068ms
+Built at: 2019-11-17 20:49:09
+  Asset    Size  Chunks             Chunk Names
+main.js  71 KiB       0  [emitted]  main
+Entrypoint main = main.js
+[1] ./src/index.js 217 bytes {0} [built]
+[2] (webpack)/buildin/global.js 472 bytes {0} [built]
+[3] (webpack)/buildin/module.js 497 bytes {0} [built]
+    + 1 hidden module
+```
+
+
+webpack/buildin/global.js
+```js
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || new Function("return this")();
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+```
+webpack/buildin/module.js
+```
+module.exports = function(module) {
+	if (!module.webpackPolyfill) {
+		module.deprecate = function() {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if (!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+```
