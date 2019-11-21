@@ -28,15 +28,12 @@ newer code: webpack version 4.41.2 (npm info webpack)
   eval(
     '/* unused harmony export square */\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return cube; });\nfunction square(x) {\n  return x * x;\n}\n\nfunction cube(x) {\n  return x * x * x;\n}\n\n\n//# sourceURL=webpack:///./src/math.js?'
   );
-
-
 /******/
 ```
 展开
 ```js
 /* unused harmony export square */
   /* harmony export (binding) */
-
   __webpack_require__.d(__webpack_exports__, "a", function() {
     return cube;
   });
@@ -45,8 +42,6 @@ newer code: webpack version 4.41.2 (npm info webpack)
   }
   function cube(x) {
     return x * x * x;
-  }
-
-  /***/
+  }//# sourceURL=webpack:///./src/math.js?
 }
 ```
