@@ -6,6 +6,18 @@ Command + Option +前进/后退箭头: 在同一个浏览器窗口中切换标�
 Control + Command + blank： emoji  
 control + command + Q： 快速锁屏  
 
+### Terminal光标
+ctrl + q: 清空命令行
+ctrl + a: 行首
+ctrl + e: 行尾
+ctrl + u:
+ctrl + k:
+>tips:  
+Keyboard Shortcut: ⌥ ←(→)  
+Action：Send Escape Sequence  
+Esc+: b(f)  
+
+
 ### 桌面相关
 ctrl + left/right: 不同桌面间切换  
 ctrl + up: 切换程序  
