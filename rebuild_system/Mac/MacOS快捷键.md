@@ -7,11 +7,11 @@ Control + Command + blank： emoji
 control + command + Q： 快速锁屏  
 
 ### Terminal光标
-ctrl + q: 清空命令行
-ctrl + a: 行首
-ctrl + e: 行尾
-ctrl + u:
-ctrl + k:
+ctrl + a: 行首  
+ctrl + e: 行尾  
+ctrl + q/u: 清空命令行  
+ctrl + k: 删除从光标位置到行尾
+Ctrl + w: 删除从光标位置前到当前所处单词（Word）的开头
 >tips:  
 Keyboard Shortcut: ⌥ ←(→)  
 Action：Send Escape Sequence  
