@@ -17,7 +17,7 @@ console.log(3)
 ```
 0
 3
-undefined
+
 1
 2 1
 ```
