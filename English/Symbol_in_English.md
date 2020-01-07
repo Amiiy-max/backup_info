@@ -1,6 +1,7 @@
 asterisk [ˈæstərɪsk] 星号 \*   
 backslash \   
 slash /   
+dash - 破折号  
 
 #### [HTML ISO-8859-1 参考手册:](https://www.w3school.com.cn/tags/html_ref_entities.html)
 Alpha符号 &alpha;   
