@@ -25,7 +25,6 @@
     <script>
         window.onload = () => {
             const observer = new ResizeObserver(entries => {
-                console.log('resize', entries[0].contentRect.width)
                 document.getElementById('child').style = `width:${entries[0].contentRect.width}px`;
             })
             observer.observe(document.getElementById('parent'));
@@ -39,6 +38,10 @@
             <div id='child'>child</div>
             <div class="sibling">sibling</div>
         </div>
+    </div>
+    <div>
+        <a href='https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver'>ResizeObserver:</a>
+        <span>layout => ResizeObserver => paint</span>
     </div>
 </body>
 
