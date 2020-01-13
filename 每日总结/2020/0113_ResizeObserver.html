@@ -1,0 +1,45 @@
+<html>
+
+<head>
+    <style>
+        .grandparent {
+            background-color: cadetblue;
+            display: flex;
+            width: 100%;
+        }
+
+        #parent {
+            display: flex;
+            max-width: 100%;
+        }
+
+        #child {
+            background-color: sandybrown;
+        }
+
+        .sibling {
+            width: 5px;
+            background-color: seashell;
+        }
+    </style>
+    <script>
+        window.onload = () => {
+            const observer = new ResizeObserver(entries => {
+                console.log('resize', entries[0].contentRect.width)
+                document.getElementById('child').style = `width:${entries[0].contentRect.width}px`;
+            })
+            observer.observe(document.getElementById('parent'));
+        }
+    </script>
+</head>
+
+<body>
+    <div class="grandparent">
+        <div id="parent">
+            <div id='child'>child</div>
+            <div class="sibling">sibling</div>
+        </div>
+    </div>
+</body>
+
+</html>
