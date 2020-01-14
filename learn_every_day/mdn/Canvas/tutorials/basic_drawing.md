@@ -1,3 +1,4 @@
+# Basic usage
 <canvas> 最早由Apple引入WebKit，用于Mac OS X 的 Dashboard  
 creates graphics on the fly  
 
@@ -56,16 +57,31 @@ fill()
 > the first path construction command is always treated as a `moveTo()`
 
 1. line  
-moveTo(x, y):Moving the pen  
-lineTo(x, y):Draws a line  
+[moveTo(x, y)](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/moveTo):Moving the pen  
+[lineTo(x, y)](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineTo):Draws a line  
 2. arcs  
-arc(x, y, radius, startAngle, endAngle, anticlockwise):
+[arc(x, y, radius, startAngle, endAngle, anticlockwise)](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/arc):
 Draws an arc which is centered at (x, y) position with radius r starting at startAngle and ending at endAngle going in the given direction indicated by anticlockwise (defaulting to clockwise).  
-arcTo(x1, y1, x2, y2, radius):
+[arcTo(x1, y1, x2, y2, radius)](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/arcTo):
 Draws an arc with the given control points and radius, connected to the previous point by a straight line.  
 > ***radians not degrees***: `radians = (Math.PI/180)*degrees.`
-3. Bezier and quadratic curves  
+3. Bezier and quadratic curves 贝塞尔曲线 cubic三次方 and quadratic二次方 varieties  
+[quadraticCurveTo(cp1x, cp1y, x, y)](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/quadraticCurveTo): 
+Draws a quadratic Bézier curve from the current pen position to the end point specified by x and y, using the control point specified by cp1x and cp1y.  
+[bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/bezierCurveTo): 
+Draws a cubic Bézier curve from the current pen position to the end point specified by x and y, using the control points specified by (cp1x, cp1y) and (cp2x, cp2y).  
+![differences](https://mdn.mozillademos.org/files/223/Canvas_curves.png)  
+4. Rectangles  
+[rect(x, y, width, height)](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/rect)
+adds a rectangular path to a currently open path.  
+> the `moveTo()` method is automatically called with the parameters (x,y)
 
+## Path2D objects:  cache or record drawing commands.
+[Path2D()](https://developer.mozilla.org/en-US/docs/Web/API/Path2D/Path2D)
+The Path2D() constructor returns a newly instantiated Path2D object, optionally with another path as an argument (creates a copy), or optionally with a string consisting of SVG path data.  
 
+### Using SVG paths
+`var p = new Path2D('M10 10 h 80 v 80 h -80 Z');`
+>The path will move to point (M10 10) and then move horizontally 80 points to the right (h 80), then 80 points down (v 80), then 80 points to the left (h -80), and then back to the start (z).
 
 
