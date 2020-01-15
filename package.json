@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "mkcatalog": "echo 'GITHUB_REPOSITORY: $GITHUB_REPOSITORY' && exit 1"
+    "mkcatalog": "node .catalog/mkcatalog.js"
   },
   "author": "gupeng",
   "license": "MIT"
