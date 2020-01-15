@@ -8,10 +8,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: npm run mkcatalog
       run: |
-        ls -alhR .
         echo '${{ secrets.GITHUB_TOKEN }}'
-        echo '${{ secrets }}'
+        echo $GITHUB_REPOSITORY
         git config --global user.email "gugegev5@gmail.com" && git config --global user.name "mk catalog"
         git add -A
         git commit -m "Catalog Created/Update"
-        git push "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY" HEAD:master
+        git push "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/"$GITHUB_REPOSITORY HEAD:master
