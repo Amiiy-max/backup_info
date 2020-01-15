@@ -5,6 +5,7 @@ const urlPrefix = "https://gugegev5.github.io/backup_info/";
 const ignorePaths = [
   ".catalog",
   ".github",
+  ".git",
   "package.json",
   ".gitignore",
   "_config.yml"
@@ -43,7 +44,17 @@ function getCatalogJson(folder, parentNode) {
         const parentUrl = path.join(urlPrefix, folder);
         parentNode.url = parentUrl;
       } else {
-        const url = path.join(urlPrefix, folder, item.name);
+        let fileName;
+        if (path.extname(item.name) == ".md") {
+          fileName = `${item.name.substring(
+            0,
+            item.name.lastIndexOf(".md")
+          )}.html`;
+        } else {
+          fileName = item.name;
+        }
+        const url = path.join(urlPrefix, folder, fileName);
+
         const fileObj = getFileObj(item.name, url);
         parentNode.children.push(fileObj);
       }
@@ -64,5 +75,5 @@ function getCatalog() {
 
 fs.writeFile(".catalog/catalog.json", JSON.stringify(getCatalog()), err => {
   if (err) throw err;
-  console.log("文件已被保存");
+  console.log("catalog生成成功");
 });
