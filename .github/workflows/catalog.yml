@@ -1,5 +1,8 @@
 name: catalog
-on: [push]
+on:
+  push:
+    paths-ignore:
+    - '.catalog/**'
 
 jobs:
   mkcatalog:
