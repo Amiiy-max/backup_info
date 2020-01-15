@@ -1,0 +1,11 @@
+{
+  "name": "backup_info",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "mkcatalog": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "gupeng",
+  "license": "MIT"
+}
