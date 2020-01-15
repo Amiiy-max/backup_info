@@ -1,0 +1,13 @@
+name: catalog
+on: [push]
+
+jobs:
+  mkcatalog:
+    runs-on: ubuntu-latest
+    steps:
+    - name: npm run mkcatalog
+      run: |
+        git config --global user.email "gugegev5@gmail.com" && git config --global user.name "mk catalog"
+        git add -A
+        git commit -m "Catalog Created/Update"
+        git push "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ GITHUB_REPOSITORY }}" HEAD:master
