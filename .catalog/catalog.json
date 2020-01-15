@@ -1,0 +1,13 @@
+[
+  {
+    name: 'English',
+    type: 'folder',
+    children: [
+      {
+        name: 'Symbol_in_English',
+        type: 'file',
+        url: 'https://gugegev5.github.io/backup_info/English/Symbol_in_English.html'
+      },
+    ]
+  }
+]
