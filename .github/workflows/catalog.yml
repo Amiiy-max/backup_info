@@ -2,9 +2,10 @@ name: catalog
 on:
   push:
     paths-ignore:
-    - '.catalog/**'
+    - '_layouts/**'
     - '.github/**'
     - 'package.json'
+    - 'package-lock.json'
 
 jobs:
   mkcatalog:
