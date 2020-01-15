@@ -12,4 +12,16 @@ textBaseline = value
 direction = value  
 > ltr, rtl, inherit. The default value is inherit
 
-![textBaseline](http://www.whatwg.org/specs/web-apps/current-work/images/baselines.png)
+![http://www.whatwg.org/specs/web-apps/current-work/images/baselines.png](http://www.whatwg.org/specs/web-apps/current-work/images/baselines.png)  
+
+## Advanced text measurements
+measureText()
+Returns a TextMetrics object containing the width, in pixels, that the specified text will be when drawn in the current text style.
+```
+var ctx = document.getElementById('canvas').getContext('2d');
+var text = ctx.measureText('foo'); // TextMetrics object
+text.width; // 16;
+```
+
+
+  
