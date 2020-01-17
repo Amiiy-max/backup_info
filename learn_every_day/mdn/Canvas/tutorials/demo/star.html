@@ -1,0 +1,32 @@
+<html>
+
+<body onload="draw();">
+    <canvas id="canvas" width="300" height="300"></canvas>
+</body>
+
+<script>
+    function draw() {
+        var ctx = document.getElementById('canvas').getContext('2d');
+        ctx.translate(150, 150);
+
+        ctx.strokeStyle = "#000";
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.rotate(- Math.PI / 2);
+        const r = 60;
+        ctx.moveTo(r, 0);
+        for (let i = 0; i < 10; i++) {
+            setTimeout(() => {
+                ctx.rotate(Math.PI / 5);
+                if (i % 2 === 0) {
+                    ctx.lineTo((r / 0.525731) * 0.200811, 0);
+                } else {
+                    ctx.lineTo(r, 0);
+                }
+                ctx.stroke();
+            }, 100 * i);
+        }
+    }
+</script>
+
+</html>
