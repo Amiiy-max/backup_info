@@ -17,7 +17,11 @@ jobs:
       run: |
         npm install
         npm run mkcatalog
-        git config --global user.email "gugegev5@gmail.com" && git config --global user.name "mk catalog"
+        git config --global user.email "gugegev5@gmail.com" && git config --global user.name "actions: mk catalog"
         git add -A
-        git commit -m "[Actions: catalog] Catalog Update"
+        git status|grep 'nothing to commit'
+        if [ 1 -eq $? ]; 
+        then git commit -m "[Actions: catalog] Catalog Update"; 
         git push "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/"$GITHUB_REPOSITORY HEAD:master
+        fi
+        
