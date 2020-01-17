@@ -72,7 +72,7 @@ function getCatalog() {
   getCatalogJson(folder, catalogJson);
   return catalogJson.children;
 }
-
+const catalogJson = JSON.stringify(getCatalog());
 const templateHtml = `
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: "en-US" }}">
@@ -120,7 +120,7 @@ const templateHtml = `
 
       </section>
       <footer>
-        ${JSON.stringify(getCatalog())}
+        ${catalogJson}
         {% if site.github.is_project_page %}
         <p>This project is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></p>
         {% endif %}
@@ -146,4 +146,8 @@ const templateHtml = `
 fs.writeFile("_layouts/default.html", templateHtml, err => {
   if (err) throw err;
   console.log("_layouts/default.html生成成功");
+});
+fs.writeFile(".catalog/catalog.json", catalogJson, err => {
+  if (err) throw err;
+  console.log("catalog.json更新成功");
 });
