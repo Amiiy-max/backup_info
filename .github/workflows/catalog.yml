@@ -2,7 +2,7 @@ name: catalog
 on:
   push:
     paths-ignore:
-    - '.catalog'
+    - '.catalog/**'
     - '_layouts/**'
     - '.github/**'
     - 'package.json'
