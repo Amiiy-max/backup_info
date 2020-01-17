@@ -44,7 +44,7 @@ f (dy): Vertical moving.
 ```
 m11 m21 dx
 m12 m22 dy
-0 	0 	1
+0 0 1
 ```
 
 2. [setTransform(a, b, c, d, e, f)](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setTransform):  
