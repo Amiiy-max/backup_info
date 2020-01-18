@@ -22,9 +22,10 @@ The object which receives a notification (an object that implements the [Event](
 最多执行一次，true => 执行完就删  
 * passive：boolean  
 使preventDefault()无效 [Improving scrolling performance with passive listeners](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Improving_scrolling_performance_with_passive_listeners)
-4. useCapture `(Optional)`: boolean, default false
-options.capture
+4. useCapture `(Optional)`: boolean, default false  
+options.capture  
 > Event bubbling and capturing are two ways of propagating events which occur in an element that is nested within another element, when both elements have registered a handle for that event  
+
 > The event propagation mode determines the order in which elements receive the event. See [DOM Level 3 Events](http://www.w3.org/TR/DOM-Level-3-Events/#event-flow) and [JavaScript Event order](http://www.quirksmode.org/js/events_order.html#link4) for a detailed explanation.
 
 > Note: For event listeners attached to the event target, the event is in the target phase, rather than the capturing and bubbling phases. Events in the target phase will trigger all listeners on an element in the order they were registered, regardless of the useCapture parameter.
