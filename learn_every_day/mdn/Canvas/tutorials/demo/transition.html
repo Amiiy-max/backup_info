@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Transition</title>
+    <style type="text/css">
+        p {
+            padding-left: 60px;
+        }
+
+        #foo {
+            border-radius: 50px;
+            width: 50px;
+            height: 50px;
+            background: #c00;
+            position: absolute;
+            top: 0;
+            left: 0;
+            -moz-transition: transform 1s;
+            -webkit-transition: transform 1s;
+            -ms-transition: transform 1s;
+            -o-transition: transform 1s;
+            transition: transform 1s;
+        }
+    </style>
+</head>
+
+<body>
+    <p>Click anywhere to move the ball</p>
+    <div id="foo"></div>
+</body>
+<script>
+    var f = document.getElementById('foo');
+    document.addEventListener('click', function (ev) {
+        f.style.transform = 'translateY(' + (ev.clientY - 25) + 'px)';
+        f.style.transform += 'translateX(' + (ev.clientX - 25) + 'px)';
+    }, false);
+
+</script>
+
+</html>
