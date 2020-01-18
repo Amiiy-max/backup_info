@@ -41,4 +41,65 @@ div {
 }
 ```
 
+## Demo:
+```html
+<html>
+<style>
+    #delay {
+        font-size: 14px;
+        transition-property: font-size;
+        transition-duration: 1.5s;
+        transition-delay: .1s;
+    }
 
+    #delay:hover {
+        font-size: 36px;
+    }
+
+    nav {
+        display: flex;
+        padding: 12px;
+        background-color: #333;
+    }
+
+    a {
+        color: #fff;
+        background-color: #333;
+        transition: color .1s ease-out, background-color 2s ease .1s;
+
+        border: 1px solid #fff;
+        border-radius: 18px;
+        outline: 0;
+        padding: 8px 12px;
+        text-align: center;
+        text-decoration: none;
+        font: bold 12px Verdana;
+        color: #fff;
+        background-color: #333;
+    }
+
+    a:not(:last-child) {
+        margin-right: 12px;
+    }
+
+    a:hover,
+    a:focus {
+        color: #333;
+        background-color: #fff;
+    }
+</style>
+
+<body>
+    <div id="delay">
+        big smile!
+    </div>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact Us</a>
+        <a href="#">Links</a>
+    </nav>
+</body>
+
+</html>
+```
