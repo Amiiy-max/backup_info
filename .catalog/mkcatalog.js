@@ -207,8 +207,7 @@ const templateHtml = `
         right: 0;
       }
       .to__block .to__left {
-        position: relative;
-        
+        position: relative; 
       }
       .to__block .to__left > div .to__subItem {
         padding-left: 20px;
