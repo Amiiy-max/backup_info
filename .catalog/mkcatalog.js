@@ -1,7 +1,8 @@
 const fs = require("fs");
 const path = require("path");
 const rootFolder = "./";
-const urlPrefix = "https://gugegev5.github.io/backup_info/";
+//const urlPrefix = "https://gugegev5.github.io/backup_info/";
+const urlPrefix = "";
 const ignorePaths = [
   ".catalog",
   ".github",
