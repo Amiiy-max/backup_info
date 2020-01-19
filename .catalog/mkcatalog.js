@@ -202,7 +202,7 @@ const templateHtml = `
               // 设置显示级别
               if (data[i].type == "file") {
                 arrow = ""
-                item.innerHTML = `<div class="to__item level-${level}"><a href=${data[i].url}>${data[i].name}</a></div>`
+                item.innerHTML = '<div class="to__item level-' + level + '"><a href='+data[i].url+'>'+data[i].name+'</a></div>'
               } else {
                 item.innerHTML = '<div class="to__item level-' + level + '">' + arrow + '<span onclick="domClick(this)"><input type="checkbox" name="cName" value="' + data[i].name + '" onclick="checkboxClick(this)" /><div class="to__name">' + data[i].name + '</div></span></div>'
               }
