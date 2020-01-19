@@ -90,6 +90,8 @@ const templateHtml = `
       }
 
       /* index.css */
+
+
       .to__header .to__addUser {
         margin: 0 auto;
         width: 90%;
@@ -140,9 +142,11 @@ const templateHtml = `
       .to__header .to__flow .to__flow__item:last-child::after {
         content: "";
       }
+      .to__block {
+        text-align: center;
+      }
       .to__block .to__left,
       .to__block .to__right {
-        width: 100%;
         display: inline-block;
         vertical-align: text-top;
       }
@@ -207,7 +211,8 @@ const templateHtml = `
         right: 0;
       }
       .to__block .to__left {
-        position: relative; 
+        position: relative;
+        width:100%;
       }
       .to__block .to__left > div .to__subItem {
         padding-left: 20px;
