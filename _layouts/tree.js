@@ -47,7 +47,7 @@ var checkedList = [] // 选中列表
 		var html = ""
 		var level = 1
 
-		var data = window.data;
+		var data = window.treeData;
 		// 遍历树形结构
 		function getData(data, dom){
 			if(Object.prototype.toString.call(data) === '[object Array]'){
