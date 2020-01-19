@@ -83,6 +83,7 @@ const templateHtml = `
 
 {% seo %}
     <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+    <link rel="stylesheet" href="{{ "/_layouts/bg1.css" }}">
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -120,7 +121,11 @@ const templateHtml = `
 
       </section>
       <footer>
-        ${catalogJson}
+        <div class="to__block">
+          <div class="to__left">
+            <div class="to__content" id="leftCont"></div>
+          </div>
+        </div>
         {% if site.github.is_project_page %}
         <p>This project is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></p>
         {% endif %}
@@ -128,6 +133,10 @@ const templateHtml = `
       </footer>
     </div>
     <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
+    <script>
+      window.treeData = ${catalogJson}
+    </script>
+    <script src="{{ "/_layouts/tree.js" }}"></script>
   </body>
 </html>
 
