@@ -140,13 +140,9 @@ const templateHtml = `
       .to__header .to__flow .to__flow__item:last-child::after {
         content: "";
       }
-      .to__block {
-        padding-left: 10px;
-        text-align: center;
-      }
       .to__block .to__left,
       .to__block .to__right {
-        width: 45%;
+        width: 100%;
         display: inline-block;
         vertical-align: text-top;
       }
@@ -212,7 +208,7 @@ const templateHtml = `
       }
       .to__block .to__left {
         position: relative;
-        margin-right: 30px;
+        
       }
       .to__block .to__left > div .to__subItem {
         padding-left: 20px;
