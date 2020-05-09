@@ -2,6 +2,7 @@
 1. Async functions always return a promise. If the return value of an async function is not explicitly a promise, it will be implicitly wrapped in a promise.  
 2. Top-level code, up to and **including** the first await expression (if there is one), is run synchronously.   
 3. Code after each await expression can be thought of as existing in a `.then` callback.  
+
 ```
 async function test1() {
   var a = await Promise.resolve('one');
@@ -18,6 +19,7 @@ function test2() {
 ```
 
 ### the promise chain is not built-up in one go
+
 ```
 async function foo() {
    const p1 = new Promise((resolve) => setTimeout(() => resolve('1'), 1000))
@@ -26,10 +28,12 @@ async function foo() {
 }
 foo().catch(() => {}) // Attempt to swallow all errors...
 ```
+
 > p2 will not be "wired into" the promise chain until control returns from p1.
 
 ### return await promiseValue vs. return promiseValue
 return 自动封装Promise.resolve
+
 ```
 async function getProcessedData(url) {
   let v
